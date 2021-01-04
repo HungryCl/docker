@@ -9,6 +9,8 @@ services:
   zt:
     build: ./zt/
     restart: always
+    depends_on: 
+      - app
     devices: 
       - /dev/net/tun
     volumes:
