@@ -12,3 +12,4 @@ RUN sh -c "curl https://raw.githubusercontent.com/kadwanev/retry/master/retry -o
 
 COPY zt_config.sh zt_config.sh
 ENTRYPOINT ["bin/bash", "./zt_config.sh"]
+
