@@ -22,7 +22,7 @@ services:
     network_mode: host
 
   db:
-    image: mariadb
+    image: 459below/mariadb-armv7
     restart: always
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     volumes:
@@ -43,6 +43,7 @@ services:
       - db
     volumes:
       - nextcloud:/var/www/html
+      - /media:/opt/external
     environment:
       - MYSQL_PASSWORD=password
       - MYSQL_DATABASE=nextcloud
