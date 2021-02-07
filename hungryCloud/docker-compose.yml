@@ -43,6 +43,7 @@ services:
       - db
     volumes:
       - nextcloud:/var/www/html
+      - /Volumes/My Passport:/opt/external
     environment:
       - MYSQL_PASSWORD=password
       - MYSQL_DATABASE=nextcloud
