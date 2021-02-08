@@ -26,6 +26,10 @@
   /usr/local/bin/retry 'docker exec hungrycloud_app_1 sudo -u www-data php occ \
          config:system:set \
          trusted_domains 2 --value=$ZT_IP'
+
+  docker exec hungrycloud_app_1 sudo -u www-data php occ \
+         user:add $OCC_USER \
+         --password_from_env
 } &
 
 exec zerotier-one

@@ -1,4 +1,8 @@
 FROM nextcloud:latest
+
+ENV OC_USER user_name
+ENV OC_PASS user_pass
+
 RUN apt-get update && apt-get install -y smbclient && rm -rf /var/lib/apt/lists/* 
 RUN apt-get update && apt-get -y install sudo
 COPY default-ssl.conf /etc/apache2/sites-available/
