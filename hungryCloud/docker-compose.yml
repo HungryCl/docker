@@ -20,6 +20,7 @@ services:
       - NET_ADMIN
       - SYS_ADMIN
     network_mode: host
+    env_file: ./config/.env
 
   db:
     image: 459below/mariadb-armv7
@@ -49,5 +50,7 @@ services:
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
       - MYSQL_HOST=db
-      - NEXTCLOUD_ADMIN_USER=Tejas
-      - NEXTCLOUD_ADMIN_PASSWORD=password
+      - NEXTCLOUD_ADMIN_USER=local_admin
+      - NEXTCLOUD_ADMIN_PASSWORD=blueberry
+    env_file: ./config/.env
+

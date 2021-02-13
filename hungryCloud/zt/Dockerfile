@@ -1,8 +1,5 @@
 FROM bltavares/zerotier
 
-ENV API_TOKEN NNTH5Py8GnLr2yMHVLhSaKZK6k2LlUHM
-ENV NETWORK_ID 12ac4a1e7166f279
-
 RUN apt-get update && apt-get -y install bash
 RUN apt-get update && apt-get -y install sudo 
 RUN apt-get update && apt-get -y install openssh-server openssh-client 

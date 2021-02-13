@@ -51,7 +51,8 @@
        php occ app:disable cloud_federation_api;
        php occ app:disable federation;
        php occ app:disable federatedfilesharing;
-
+              
+       php occ app:disable files_external;
        php occ app:enable files_external;
     
        php occ user:add $OC_USER --password-from-env;
@@ -59,7 +60,8 @@
        php occ config:system:set skeletondirectory;
        php occ config:system:set knowledgebaseenabled --type=boolean --value=false;
 
-       php occ files_external:verify 1 || php occ files_external:create hdd local null::null -c datadir=/opt/external/root;'
+       php occ files_external:verify 1 || php occ files_external:create hdd local null::null -c datadir=/opt/external/root;
+       php occ files:scan --all --unscanned;'
 
 } &
 
