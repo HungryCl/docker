@@ -20,7 +20,7 @@
       -H "Content-Type: application/json" \
       --data \' { "name": "server", "config": { "authorized" : true } } \''
 
-  sleep 3
+  sleep 10
 
   #get zerotier IP of node
   read ZT_IP <<< $(zerotier-cli listnetworks | \
@@ -37,7 +37,6 @@
   docker exec hungrycloud_app_1 \
       su -s /bin/sh www-data -c \
       'php occ app:disable password_policy;
-       php occ app:disable firstrunwizard;
        php occ app:disable photos;
        php occ app:disable dashboard;
        php occ app:disable activity;
@@ -51,6 +50,7 @@
        php occ app:disable cloud_federation_api;
        php occ app:disable federation;
        php occ app:disable federatedfilesharing;
+       php occ app:disable theming;
               
        php occ app:disable files_external;
        php occ app:enable files_external;
@@ -59,9 +59,11 @@
 
        php occ config:system:set skeletondirectory;
        php occ config:system:set knowledgebaseenabled --type=boolean --value=false;
+       php occ config:system:set theme --value=hungryCloud;
+       cp -r /var/www/html/themes/hungryCloud/apps/* /var/www/html/apps/
 
        php occ files_external:verify 1 || php occ files_external:create hdd local null::null -c datadir=/opt/external/root;
-       php occ files:scan --all --unscanned;'
+       php occ files:scan $OC_USER;'
 
 } &
 
