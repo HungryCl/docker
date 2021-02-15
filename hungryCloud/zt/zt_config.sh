@@ -25,9 +25,9 @@
     #get zerotier IP of node
     read ZT_IP <<< $(zerotier-cli listnetworks | \
         awk -F '[\/ ]+' '$9 !~ /<ZT/ { print $9 }'); export ZT_IP
+        
+    echo "ZT_IP: $ZT_IP"
   done
-
-  echo "ZT_IP: $ZT_IP"
   
   #set trusted domains in nextcloud, retry multiple times as app takes a while to come up
   /usr/local/bin/retry --tries=50 'docker exec hungrycloud_app_1 sudo -u www-data php occ \
