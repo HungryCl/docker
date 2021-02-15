@@ -20,11 +20,12 @@
       -H "Content-Type: application/json" \
       --data \' { "name": "server", "config": { "authorized" : true } } \''
 
-  sleep 10
-
-  #get zerotier IP of node
-  read ZT_IP <<< $(zerotier-cli listnetworks | \
-      awk -F '[\/ ]+' '$9 !~ /<ZT/ { print $9 }'); export ZT_IP
+  while [ -z "$ZT_IP" ]
+  do
+    #get zerotier IP of node
+    read ZT_IP <<< $(zerotier-cli listnetworks | \
+        awk -F '[\/ ]+' '$9 !~ /<ZT/ { print $9 }'); export ZT_IP
+  done
 
   echo "ZT_IP: $ZT_IP"
   

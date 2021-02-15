@@ -37,6 +37,7 @@ services:
   app:
     build: ./nextcloud
     restart: always
+    hostname: hungrycloud
     ports:
       - 8080:80
       - 4433:443
